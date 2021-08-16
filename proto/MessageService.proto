@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+service MessageService {
+  rpc GetMessageStream(google.protobuf.Empty) returns (stream Message);
+  rpc PostMessage(Message) returns (PostMessageResponse);
+}
+
+message PostMessageResponse {
+  string status = 1;
+}
+
+message Message {
+  string text = 1;
+  int64 create_time = 2;
+  string author_name = 3;
+}
